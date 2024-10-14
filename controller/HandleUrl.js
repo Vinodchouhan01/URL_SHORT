@@ -12,9 +12,8 @@ const HandleUrlController = async (req , res) => {
         redirectUrl : redirctUrl ,
         visitHistory : {}
      })
-     return res.status(201).json({
-       entry ,
-       message : "Handle function is done"
+     return res.render("home" , {
+      id:entry.shortId 
      })
      } catch (error) {
         return res.status(400).json({
