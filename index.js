@@ -23,6 +23,6 @@ app.set("views" , path.resolve("./views")) ; // 3 for ejs
 
 app.use("/api/Home" , staticRouter) ;
 app.use("/api" , urlRoute) ;
-app.listen(PORT , (req , res) => {
+app.listen(PORT , () => {
     console.log("server is running fine") ;
 })

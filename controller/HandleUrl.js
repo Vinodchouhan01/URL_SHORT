@@ -1,4 +1,6 @@
 const url = require("../models/url") ;
+const User = require("../models/user");
+const jwt = require("jsonwebtoken") ;
 const shortid = require("shortid") ;
 const HandleUrlController = async (req , res) => {
      try {
@@ -22,4 +24,52 @@ const HandleUrlController = async (req , res) => {
      }
 }
 
-module.exports = HandleUrlController ;
+const signUpHandle = async (req, res) => {
+   const { fullname, email, password } = req.body;
+
+   try {
+
+      let user = await User.findOne({ email });
+       if (user) {
+           return res.status(400).json({ message: 'User already exists' });
+       }
+
+       // Create new user
+       user = new User({ fullname, email, password });
+       await user.save();
+
+       // Generate JWT
+       const token = jwt.sign({ id: user._id }, 'secretKey', { expiresIn: '1h' });
+       res.status(201).json({ token });
+   } catch (error) {
+       console.error(error);
+       res.status(500).send('Server error');
+   }
+}
+
+const loginHandle = async(req , res) => {
+   const { email, password } = req.body;
+
+    try {
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Check password
+        const isMatch = await user.matchPassword(password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Generate JWT
+        const token = jwt.sign({ id: user._id }, 'secretKey', { expiresIn: '1h' });
+        res.status(200).json({ token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+}
+
+module.exports = {HandleUrlController , loginHandle , signUpHandle} ;

@@ -1,11 +1,13 @@
 const express = require("express") ;
 const router = express.Router() ;
-const HandleUrlController = require("../controller/HandleUrl");
+const {HandleUrlController , loginHandle , signUpHandle} = require("../controller/HandleUrl");
 const URL = require("../models/url");
 
 
 
 router.post("/url" , HandleUrlController) ;
+router.post("/login" , loginHandle) ;
+router.post("/signup" , signUpHandle) ;
 
 router.get("/url/:shortid" , async (req , res) => {
     const shortid = req.params.shortid ;
