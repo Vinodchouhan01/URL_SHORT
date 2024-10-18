@@ -17,6 +17,7 @@ app.set("views" , path.resolve("./views")) ; // 3 for ejs
 app.get("/", (req, res) => {
     res.redirect("/api/Home");
 });
+
 // app.get("/test" , async (req , res) => {
 //     const allurls = await URL.find({}) ;
 //     return res.render("home" , { 
