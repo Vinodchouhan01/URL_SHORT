@@ -14,6 +14,9 @@ DbConnect() ;
 app.set("view engine" , "ejs") ; // 1 for ejs first for install ejs
 app.set("views" , path.resolve("./views")) ; // 3 for ejs
 
+app.get("/", (req, res) => {
+    res.redirect("/api/Home");
+});
 // app.get("/test" , async (req , res) => {
 //     const allurls = await URL.find({}) ;
 //     return res.render("home" , { 
