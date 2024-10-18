@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1> URL shortener </h1>
+    <button onclick="location.href='/api/Home'">Go to Home</button>
+
     <% if (locals.id) { %>
      <p>URL Generated : http://localhost:8000/api/url/<%= id %></p>
     <% } %>

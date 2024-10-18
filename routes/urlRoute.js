@@ -4,10 +4,7 @@ const {HandleUrlController , loginHandle , signUpHandle} = require("../controlle
 const URL = require("../models/url");
 
 
-
 router.post("/url" , HandleUrlController) ;
-router.post("/login" , loginHandle) ;
-router.post("/signup" , signUpHandle) ;
 
 router.get("/url/:shortid" , async (req , res) => {
     const shortid = req.params.shortid ;
