@@ -15,7 +15,7 @@ const HandleUrlController = async (req , res) => {
         redirectUrl : redirctUrl ,
         visitHistory : {}
      })
-     return res.render("home" , {
+     return res.render("Home" , {
       id:entry.shortId 
      })
      } catch (error) {

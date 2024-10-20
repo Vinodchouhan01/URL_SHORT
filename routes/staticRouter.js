@@ -6,7 +6,7 @@ const URL = require("../models/url");
 router.get("/" , async (req , res) => {
     const allurls = await URL.find({}) ;
     
-    return res.render("home" , {
+    return res.render("Home" , {
         urls : allurls ,
     }) ;
 }) ;
