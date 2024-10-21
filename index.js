@@ -4,8 +4,7 @@ const urlRoute = require("./routes/urlRoute")
 const DbConnect = require("./database/dbConnect")
 const URL = require("./models/url");
 const staticRouter = require("./routes/staticRouter")
-
-const PORT = 8000 ;
+const PORT = 8000 
 const path = require("path"); // 2 for ejs
 require('dotenv').config(); 
 app.use(express.json()) ;
